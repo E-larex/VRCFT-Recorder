@@ -1,0 +1,4 @@
+.venv
+*.pkl
+data
+.DS_Store

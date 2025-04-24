@@ -54,7 +54,10 @@ class AudioProcessorUI(QWidget):
         path = self.file_edit.text()
         prefix = self.pre_time.value()
         suffix = self.post_time.value()
+        config = self.config_combo.currentText()
         print(path,prefix,suffix)
+        with open(f'{self.wp}/{config}.json', 'w')as file:
+            json.dump({'path':path,'prefix':prefix,'suffix':suffix},file)
 
 
     def action(self):
@@ -85,16 +88,16 @@ class AudioProcessorUI(QWidget):
         pre_layout = QVBoxLayout()
         pre_layout.addWidget(QLabel("音频前空出时间（秒）:"))
         self.pre_time = QDoubleSpinBox()
-        self.pre_time.setRange(0.0, 60.0)
-        self.pre_time.setSingleStep(0.1)
+        # self.pre_time.setRange(0.0, 60.0)
+        # self.pre_time.setSingleStep(0.1)
         pre_layout.addWidget(self.pre_time)
         
         # 后空时间
         post_layout = QVBoxLayout()
         post_layout.addWidget(QLabel("音频后空出时间（秒）:"))
         self.post_time = QDoubleSpinBox()
-        self.post_time.setRange(0.0, 60.0)
-        self.post_time.setSingleStep(0.1)
+        # self.post_time.setRange(0.0, 60.0)
+        # self.post_time.setSingleStep(0.1)
         post_layout.addWidget(self.post_time)
         
         time_layout.addLayout(pre_layout)
